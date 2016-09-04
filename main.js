@@ -6,7 +6,8 @@ app.on('ready', function () {
     height: 480,
     frame: false,
     resizable: false,
-    maximizable: false
+    maximizable: false,
+    icon: __dirname + '/resources/icon.png',
   });
 
   mainWindow.loadURL('file://' + __dirname + '/index.html');

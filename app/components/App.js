@@ -1,6 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Window, TitleBar} from 'react-desktop/macOs';
-import MainView from './MainView';
+import Flexbox from 'flexbox-react';
+
+import DirView from './DirView';
+import GridView from './GridView';
+
 class App extends Component {
   render() {
     const {remote} = this.props;
@@ -14,8 +18,11 @@ class App extends Component {
           onCloseClick={() => win.close() }
           onMinimizeClick={() => win.minimize() }
           id="titlebar"
-          />
-        <MainView remote={remote} store={this.props.store}/>
+        />
+        <Flexbox flexGrow={1} flexDirection="column">
+          <DirView remote={remote} store={this.props.store} />
+          <GridView store={this.props.store} />
+        </Flexbox>
       </Window>
     );
   };

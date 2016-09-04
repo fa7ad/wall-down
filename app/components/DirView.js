@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Flexbox from 'flexbox-react';
-import { Text } from 'react-desktop/macOs';
 import { observer } from 'mobx-react';
+import { Text } from 'react-desktop/macOs';
+import { MdCloudDownload } from 'react-icons/lib/md';
 
 @observer
-class MainView extends Component {
+class DirView extends Component {
   constructor() {
     super();
   }
@@ -12,8 +13,13 @@ class MainView extends Component {
   render() {
     const { store } = this.props;
     return (
-      <Flexbox alignItems="flex-start" flexGrow={1}>
-        <button onClick={this.chooseDir}>Choose folder</button>
+      <Flexbox
+        alignItems="flex-start"
+        flexGrow={1}
+        flexDirection="row"
+        justifyContent="center"
+      >
+        <button onClick={this.chooseDir}><MdCloudDownload /> Choose folder</button>
         <Text padding="0 5px">{store.directory}</Text>
       </Flexbox>
     );
@@ -28,4 +34,4 @@ class MainView extends Component {
   }
 }
 
-export default MainView;
+export default DirView;

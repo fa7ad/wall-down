@@ -38,6 +38,7 @@
       "react": "npm:react@^15.3.1",
       "react-desktop": "npm:react-desktop@^0.2.13",
       "react-dom": "npm:react-dom@^15.3.1",
+      "react-icons": "npm:react-icons@^2.2.1",
       "snoowrap": "npm:snoowrap@^1.7.0"
     },
     "devDependencies": {

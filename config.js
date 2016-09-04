@@ -28,6 +28,7 @@ System.config({
     "react": "npm:react@15.3.1",
     "react-desktop": "npm:react-desktop@0.2.13",
     "react-dom": "npm:react-dom@15.3.1",
+    "react-icons": "npm:react-icons@2.2.1",
     "snoowrap": "npm:snoowrap@1.7.0",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
@@ -269,6 +270,15 @@ System.config({
     },
     "npm:react-dom@15.3.1": {
       "react": "npm:react@15.3.1"
+    },
+    "npm:react-icon-base@2.0.3": {
+      "react": "npm:react@15.3.1",
+      "react-dom": "npm:react-dom@15.3.1"
+    },
+    "npm:react-icons@2.2.1": {
+      "react": "npm:react@15.3.1",
+      "react-dom": "npm:react-dom@15.3.1",
+      "react-icon-base": "npm:react-icon-base@2.0.3"
     },
     "npm:react@15.3.1": {
       "fbjs": "npm:fbjs@0.8.4",
