@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wall Down</title>
+  <link rel="stylesheet" href="app/stylesheets/root.css" />
+  <script src="jspm_packages/system.js"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <div id="root">
+    <div class="loading-cube">
+      <style>body,html {-webkit-app-region: drag}</style>
+      <div class="cube1 cube"></div>
+      <div class="cube2 cube"></div>
+      <div class="cube4 cube"></div>
+      <div class="cube3 cube"></div>
+    </div>
+  </div>
+  <script>
+    System.import('app/index');
+  </script>
+</body>
+</html>
