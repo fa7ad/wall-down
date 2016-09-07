@@ -15,7 +15,7 @@ class DirView extends Component {
     return (
       <Flexbox
         alignItems="flex-start"
-        flexGrow={1}
+        padding="10px 0 15px 0"
         flexDirection="row"
         justifyContent="center"
       >

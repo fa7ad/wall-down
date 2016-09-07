@@ -1,7 +1,7 @@
 import { observable } from 'mobx';
 
 class Store {
-  @observable directory = __dirname;
+  @observable directory = window.process.env.TMPDIR || window.process.env.TMP;
   @observable selected = 1;
 }
 
