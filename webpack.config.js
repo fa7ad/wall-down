@@ -22,11 +22,14 @@ module.exports = Object.assign({
   },
   externals: {
     "react": "React",
-    "react-dom": "ReactDOM"
+    "react-dom": "ReactDOM",
+    "snoowrap": "snoowrap",
+    "lodash": "_"
   }
 }, process.env.NODE_ENV === "production" ? {
   plugins: [
     new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -37,3 +40,4 @@ module.exports = Object.assign({
     }),
   ],
 } : {});
+
