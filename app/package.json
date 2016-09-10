@@ -1,0 +1,19 @@
+{
+  "name": "wall-down",
+  "version": "1.0.0",
+  "description": "Download wallpapers based on reddit",
+  "main": "index.html",
+  "author": "Fahad Hossain <8bit.demoncoder@gmail.com> (http://fahad.gq/)",
+  "license": "MIT",
+  "dependencies": {
+    "flexbox-react": "^4.0.0",
+    "lodash": "^4.15.0",
+    "mobx": "^2.5.1",
+    "mobx-react": "^3.5.5",
+    "react": "^15.3.1",
+    "react-desktop": "^0.2.13",
+    "react-dom": "^15.3.1",
+    "react-icons": "^2.2.1",
+    "snoowrap": "^1.7.1"
+  }
+}

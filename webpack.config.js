@@ -1,10 +1,15 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = Object.assign({
-  entry: './app/index.js',
+  entry: './app/src/index.js',
   output: {
-    path: './resources/js',
+    path: './app/js',
     filename: 'bundle.js'
+  },
+  resolve: {
+    root: path.resolve('./app'),
+    extensions: ['', '.js']
   },
   module: {
     loaders: [{
