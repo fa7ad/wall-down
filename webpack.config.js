@@ -1,48 +1,64 @@
-const webpack = require('webpack');
-const path = require('path');
+const Webpack = require('webpack')
+const {resolve} = require('path')
+const cssnano = require('cssnano')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-module.exports = Object.assign({
-  entry: './app/src/index.js',
+const pluginsList = process.env.NODE_ENV === 'production' ? [
+  new ExtractTextPlugin('css/styles.css'),
+  new Webpack.optimize.DedupePlugin(),
+  new Webpack.optimize.OccurrenceOrderPlugin(true),
+  new Webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    },
+    output: {
+      comments: false
+    }
+  })
+] : [
+  new ExtractTextPlugin('css/styles.css')
+]
+
+module.exports = {
+  entry: {
+    main: './app/src/index.js'
+  },
   output: {
-    path: './app/js',
-    filename: 'bundle.js'
+    path: './app',
+    filename: 'js/[name].js'
   },
   resolve: {
-    root: path.resolve('./app'),
+    root: resolve('./app'),
     extensions: ['', '.js']
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: "babel",
-      query: {
-        presets: ["es2015", "stage-0", "react"],
-        plugins: ["transform-decorators-legacy"]
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'stage-0', 'react'],
+          plugins: ['transform-decorators-legacy']
+        }
+      },
+      {
+        test: /\.s.ss$/,
+        loader: ExtractTextPlugin.extract(
+          'style',
+          'css?modules&localIdentName="[name]-[local]-[hash:5]"&importLoaders=1!postcss!sass'
+        )
       }
-    }, {
-      test: /\.s.ss$/,
-      loaders: ["style", "css?sourceMap", "sass?sourceMap"]
-    }]
+    ]
+  },
+  postcss: function () {
+    return [cssnano]
   },
   externals: {
-    "react": "React",
-    "react-dom": "ReactDOM",
-    "snoowrap": "snoowrap",
-    "lodash": "_"
-  }
-}, process.env.NODE_ENV === "production" ? {
-  plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-      output: {
-        comments: false,
-      },
-    }),
-  ],
-} : {});
-
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+    'snoowrap': 'snoowrap',
+    'lodash': '_'
+  },
+  plugins: pluginsList
+}

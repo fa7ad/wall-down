@@ -58,13 +58,13 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Store = __webpack_require__(1105);
+	var _Store = __webpack_require__(1107);
 
 	var _Store2 = _interopRequireDefault(_Store);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, { store: new _Store2.default(), remote: window.require('electron').remote }), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { store: new _Store2.default() }), document.getElementById('root'));
 
 /***/ },
 /* 1 */
@@ -108,6 +108,10 @@
 
 	var _GridView2 = _interopRequireDefault(_GridView);
 
+	var _app = __webpack_require__(1103);
+
+	var _app2 = _interopRequireDefault(_app);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -128,13 +132,15 @@
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
-	      var remote = this.props.remote;
-
-	      var win = remote.getCurrentWindow();
+	      var win = window.nw.Window.get();
 
 	      return _react2.default.createElement(
 	        _macOs.Window,
-	        { height: '100vh', padding: '5px' },
+	        {
+	          height: '100vh',
+	          padding: '5px',
+	          className: _app2.default.window
+	        },
 	        _react2.default.createElement(_macOs.TitleBar, {
 	          title: 'Wall Down',
 	          controls: true,
@@ -144,12 +150,12 @@
 	          onMinimizeClick: function onMinimizeClick() {
 	            return win.minimize();
 	          },
-	          id: 'titlebar'
+	          className: _app2.default.titlebar
 	        }),
 	        _react2.default.createElement(
 	          _flexboxReact2.default,
 	          { flexGrow: 1, flexDirection: 'column' },
-	          _react2.default.createElement(_DirView2.default, { remote: remote, store: this.props.store }),
+	          _react2.default.createElement(_DirView2.default, { store: this.props.store }),
 	          _react2.default.createElement(_GridView2.default, { store: this.props.store })
 	        )
 	      );
@@ -14364,10 +14370,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _flexboxReact = __webpack_require__(146);
-
-	var _flexboxReact2 = _interopRequireDefault(_flexboxReact);
-
 	var _mobxReact = __webpack_require__(151);
 
 	var _macOs = __webpack_require__(4);
@@ -14388,40 +14390,38 @@
 	  function DirView() {
 	    _classCallCheck(this, DirView);
 
-	    var _this = _possibleConstructorReturn(this, (DirView.__proto__ || Object.getPrototypeOf(DirView)).call(this));
-
-	    _this.chooseDir = function () {
-	      var _this$props = _this.props;
-	      var remote = _this$props.remote;
-	      var store = _this$props.store;
-
-	      var path = remote.dialog.showOpenDialog({
-	        properties: ['openDirectory']
-	      });
-	      if (path) store.directory = path[0];
-	    };
-
-	    return _this;
+	    return _possibleConstructorReturn(this, (DirView.__proto__ || Object.getPrototypeOf(DirView)).apply(this, arguments));
 	  }
 
 	  _createClass(DirView, [{
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      var store = this.props.store;
 
 	      return _react2.default.createElement(
-	        _flexboxReact2.default,
-	        {
-	          alignItems: 'flex-start',
-	          padding: '10px 0 15px 0',
-	          flexDirection: 'row',
-	          justifyContent: 'center'
-	        },
+	        _macOs.View,
+	        { horizontalAlignment: 'center', padding: '10px 0 15px 0' },
 	        _react2.default.createElement(
 	          'button',
-	          { onClick: this.chooseDir },
-	          _react2.default.createElement(_md.MdCloudDownload, null),
-	          ' Choose folder'
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            _react2.default.createElement(_md.MdCloudDownload, null),
+	            ' Choose directory',
+	            _react2.default.createElement('input', {
+	              type: 'file',
+	              hidden: true,
+	              ref: function ref(up) {
+	                _this2._up = up;
+	              },
+	              onChange: function onChange(_ref) {
+	                var target = _ref.target;
+	                store.directory = target.value;
+	              } })
+	          )
 	        ),
 	        _react2.default.createElement(
 	          _macOs.Text,
@@ -14429,6 +14429,11 @@
 	          store.directory
 	        )
 	      );
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this._up.nwdirectory = true;
 	    }
 	  }]);
 
@@ -72136,19 +72141,23 @@
 	  _inherits(GridView, _Component);
 
 	  function GridView() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
 	    _classCallCheck(this, GridView);
 
-	    var _this = _possibleConstructorReturn(this, (GridView.__proto__ || Object.getPrototypeOf(GridView)).call(this));
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
 
-	    _this.renderItems = function () {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = GridView.__proto__ || Object.getPrototypeOf(GridView)).call.apply(_ref, [this].concat(args))), _this), _this.renderItems = function () {
 	      return [_this.renderItem(1, '/r/gmbwallpapers', _react2.default.createElement(_GmbGrid2.default, null)), _this.renderItem(2, '/r/wallpapers', _react2.default.createElement(_macOs.ProgressCircle, { size: 25 })), _this.renderItem(3, '/r/OffensiveWallpapers', _react2.default.createElement(
 	        _macOs.Text,
 	        null,
 	        'Content 3'
 	      ))];
-	    };
-
-	    _this.renderItem = function (key, title, content) {
+	    }, _this.renderItem = function (key, title, content) {
 	      var store = _this.props.store;
 
 	      return _react2.default.createElement(
@@ -72163,16 +72172,11 @@
 	        },
 	        _react2.default.createElement(
 	          _macOs.View,
-	          {
-	            horizontalAlignment: 'center',
-	            verticalAlignment: 'center'
-	          },
+	          { horizontalAlignment: 'center', verticalAlignment: 'center' },
 	          content
 	        )
 	      );
-	    };
-
-	    return _this;
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
 	  _createClass(GridView, [{
@@ -72217,10 +72221,6 @@
 
 	var _macOs = __webpack_require__(4);
 
-	var _GetReddit = __webpack_require__(1103);
-
-	var _GetReddit2 = _interopRequireDefault(_GetReddit);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -72228,6 +72228,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// import GetReddit from './GetReddit'
 
 	var GmbGrid = (0, _mobxReact.observer)(_class = function (_Component) {
 	  _inherits(GmbGrid, _Component);
@@ -72258,72 +72260,16 @@
 
 /***/ },
 /* 1103 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _snoowrap = __webpack_require__(1104);
-
-	var _snoowrap2 = _interopRequireDefault(_snoowrap);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var GetReddit = function () {
-	  function GetReddit(subreddit) {
-	    _classCallCheck(this, GetReddit);
-
-	    this.R = new _snoowrap2.default({
-	      user_agent: 'Wall-Down app by webaholicnobody. Version: 1.0.0',
-	      client_id: 'CIHceqn6LvIqbA',
-	      client_secret: 'X8GLe9qgI1yWyXOJOOZFdoqH1rI',
-	      refresh_token: '59782680-FFDkCxgXp4sBfbZGPs7yZpl4LTs'
-	    });
-	    if (subreddit) {
-	      this.subreddit = subreddit;
-	    } else {
-	      throw new Error("Please provide a subreddit name");
-	    }
-	  }
-
-	  _createClass(GetReddit, [{
-	    key: 'getPosts',
-	    value: function getPosts() {
-	      return this.R.get_subreddit(this.subreddit).get_hot().then(function (posts) {
-	        return posts.filter(function (post) {
-	          var dimension = post.title.match(/(\d+)x(\d+)/).slice(1);
-	          return dimension[0] >= dimension[1] * 1.33;
-	        });
-	      }).then(function (posts) {
-	        return posts.map(function (post) {
-	          return Object.assign(post, {
-	            download: /\.(jpg|png)$/.test(post.url) ? post.url : post.preview.images[0].source.url || post.thumbnail
-	          });
-	        });
-	      });
-	    }
-	  }]);
-
-	  return GetReddit;
-	}();
-
-	exports.default = GetReddit;
-
-/***/ },
-/* 1104 */
 /***/ function(module, exports) {
 
-	module.exports = snoowrap;
+	// removed by extract-text-webpack-plugin
+	module.exports = {"window":"-app-window-2928e-","titlebar":"-app-titlebar-1991f-"};
 
 /***/ },
-/* 1105 */
+/* 1104 */,
+/* 1105 */,
+/* 1106 */,
+/* 1107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

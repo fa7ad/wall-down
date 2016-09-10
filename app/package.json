@@ -15,5 +15,16 @@
     "react-dom": "^15.3.1",
     "react-icons": "^2.2.1",
     "snoowrap": "^1.7.1"
-  }
+  },
+  "window": {
+    "title": "wall-down",
+    "width": 480,
+    "height": 480,
+    "toolbar": false,
+    "icon": "icon/icon.png",
+    "position": "center",
+    "resizable": false,
+    "frame": false
+  },
+  "user-agent": "%name app by webaholicnobody. Version: %ver"
 }

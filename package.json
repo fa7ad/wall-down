@@ -8,6 +8,7 @@
     "start": "nw app",
     "dev": "webpack --progress && nw app",
     "build": "cross-env NODE_ENV=production webpack --progress",
+    "package": "node package",
     "watch": "webpack --progress --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,9 +36,15 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "cross-env": "^2.0.1",
+    "css-loader": "^0.25.0",
+    "cssnano": "^3.7.4",
+    "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.9.0",
     "nw": "^0.17.1",
-    "sass-loader": "^4.0.1",
+    "nw-builder": "^3.0.0",
+    "postcss-loader": "^0.13.0",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.2"
   }
 }

@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import App from './components/App';
-import Store from './Store';
+import App from './components/App'
+import Store from './Store'
 
-ReactDOM.render(
-  <App store={new Store()} remote={window.require('electron').remote}/>,
-  document.getElementById('root')
-);
+ReactDOM.render(<App store={new Store()} />, document.getElementById('root'))
