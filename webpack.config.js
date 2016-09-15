@@ -1,6 +1,6 @@
 const Webpack = require('webpack')
-const {resolve} = require('path')
 const cssnano = require('cssnano')
+const { resolve } = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const pluginsList = process.env.NODE_ENV === 'production' ? [
@@ -46,14 +46,13 @@ module.exports = {
         test: /\.s.ss$/,
         loader: ExtractTextPlugin.extract(
           'style',
-          'css?modules&localIdentName="[name]-[local]-[hash:5]"&importLoaders=1!postcss!sass'
+          'css?modules&localIdentName="[name]-[local]-[hash:9]"' +
+          '&importLoaders=1!postcss!sass'
         )
       }
     ]
   },
-  postcss: function () {
-    return [cssnano]
-  },
+  postcss: () => [cssnano],
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',

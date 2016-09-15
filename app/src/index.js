@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './components/App'
-import Store from './Store'
+import RootFrame from './RootFrame/'
+import Store from './Store/'
 
-ReactDOM.render(<App store={new Store()} />, document.getElementById('root'))
+ReactDOM.render(<RootFrame store={new Store()} />, document.querySelector('#root'))

@@ -26,5 +26,6 @@
     "resizable": false,
     "frame": false
   },
-  "user-agent": "%name app by webaholicnobody. Version: %ver"
+  "user-agent": "%name app by webaholicnobody. Version: %ver",
+  "devDependencies": {}
 }
