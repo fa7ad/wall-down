@@ -9,7 +9,7 @@ import style from './style.sass'
 
 class App extends Component {
   render () {
-    const win = window.nw.Window.get()
+    const win = window.nw ? window.nw.Window.get() : window
 
     return (
       <Window height='100vh' padding='5px' className={style.window}>
@@ -23,7 +23,7 @@ class App extends Component {
           layout='vertical'
           horizontalAlignment='center'
           verticalAlignment='center'
-          width='100vh'
+          width='100%'
         >
           <DirectoryFrame store={this.props.store} />
           <SelectorFrame store={this.props.store} />

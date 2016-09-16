@@ -1,28 +1,23 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
-import {
-  ProgressCircle,
-  SegmentedControl,
-  SegmentedControlItem,
-  Text,
-  View
-} from 'react-desktop/macOs'
+import { SegmentedControl, SegmentedControlItem, View } from 'react-desktop/macOs'
 
 import GmbView from './GmbView/'
-import style from './style.sass'
+import WallsView from './WallsView/'
+import OwallView from './OwallView/'
+
+import style from './style'
 
 @observer
 class SelectorFrame extends Component {
   render () {
     return (
       <View layout='vertical' width='100%' className={style.outerview}>
-        <SegmentedControl box>
-          {[
-            this._renderItem(1, '/r/gmbwallpapers', <GmbView />),
-            this._renderItem(2, '/r/wallpapers', <ProgressCircle size={25} />),
-            this._renderItem(3, '/r/OffensiveWallpapers', <Text>Content 3</Text>)
-          ]}
-        </SegmentedControl>
+        <SegmentedControl box>{[
+          this._renderItem(1, '/r/gmbwallpapers', <GmbView />),
+          this._renderItem(2, '/r/wallpapers', <WallsView />),
+          this._renderItem(3, '/r/OffensiveWallpapers', <OwallView />)
+        ]}</SegmentedControl>
       </View>
     )
   }

@@ -1,10 +1,16 @@
+const _ = require('lodash')
 const Webpack = require('webpack')
 const cssnano = require('cssnano')
 const { resolve } = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const { NODE_ENV } = process.env
 
-const pluginsList = process.env.NODE_ENV === 'production' ? [
+const pluginsList = [
   new ExtractTextPlugin('css/styles.css'),
+  new Webpack.NoErrorsPlugin()
+]
+
+const prodPlugins = [
   new Webpack.optimize.DedupePlugin(),
   new Webpack.optimize.OccurrenceOrderPlugin(true),
   new Webpack.optimize.UglifyJsPlugin({
@@ -15,32 +21,28 @@ const pluginsList = process.env.NODE_ENV === 'production' ? [
       comments: false
     }
   })
-] : [
-  new ExtractTextPlugin('css/styles.css')
 ]
 
 module.exports = {
+  noInfo: true,
   entry: {
-    main: './app/src/index.js'
+    main: './app/src/index'
   },
   output: {
     path: './app',
     filename: 'js/[name].js'
   },
+  devtool: 'cheap-module-sourcemap',
   resolve: {
     root: resolve('./app'),
-    extensions: ['', '.js']
+    extensions: ['', '.js', '.jsx', '.sass']
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'stage-0', 'react'],
-          plugins: ['transform-decorators-legacy']
-        }
+        loader: 'babel-loader'
       },
       {
         test: /\.s.ss$/,
@@ -59,5 +61,6 @@ module.exports = {
     'snoowrap': 'snoowrap',
     'lodash': '_'
   },
-  plugins: pluginsList
+  plugins: _.uniq(
+    NODE_ENV === 'production' ? _.concat(prodPlugins, pluginsList) : pluginsList)
 }
