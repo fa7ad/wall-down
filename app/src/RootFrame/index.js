@@ -1,3 +1,4 @@
+import nw from 'nw'
 import React, { Component } from 'react'
 import { Window, TitleBar, View } from 'react-desktop/macOs'
 
@@ -9,7 +10,7 @@ import style from './style.sass'
 
 class App extends Component {
   render () {
-    const win = window.nw ? window.nw.Window.get() : window
+    const win = nw.Window.get()
 
     return (
       <Window height='100vh' padding='5px' className={style.window}>

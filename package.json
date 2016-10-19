@@ -2,49 +2,50 @@
   "name": "wall-down",
   "version": "1.0.0",
   "description": "Download wallpapers based on reddit",
-  "main": "index.html",
+  "main": "app/index.html",
   "scripts": {
-    "postinstall": "cd app && npm install",
     "start": "nw app",
-    "dev": "webpack --progress && nw app",
+    "postinstall": "cd app && npm install",
     "build": "cross-env NODE_ENV=production webpack --progress",
-    "pack": "node package",
-    "watch": "nodemon -w webpack.config.js --exec 'webpack --watch --progress'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/fa7ad/wall-show.git"
+    "watch": "nodemon -w webpack.config.js --exec 'webpack --watch --progress'",
+    "package": "node package",
+    "start:clean": "webpack --progress && nw app"
   },
   "keywords": [
     "download",
     "wallpaper",
     "reddit",
-    "electron"
+    "nwjs"
   ],
-  "author": "Fahad Hossain <8bit.demoncoder@gmail.com> (http://fahad.gq/)",
+  "homepage": "https://github.com/fa7ad/wall-down#readme",
   "license": "MIT",
-  "homepage": "https://github.com/fa7ad/wall-show#readme",
+  "author": "Fahad Hossain <8bit.demoncoder@gmail.com> (http://fahad.gq/)",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fa7ad/wall-down.git"
+  },
   "bugs": {
-    "url": "https://github.com/fa7ad/wall-show/issues"
+    "url": "https://github.com/fa7ad/wall-down/issues"
   },
   "devDependencies": {
-    "babel-core": "^6.14.0",
-    "babel-loader": "^6.2.5",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.14.0",
-    "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-1": "^6.13.0",
-    "cross-env": "^2.0.1",
-    "css-loader": "^0.25.0",
-    "cssnano": "^3.7.4",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "node-sass": "^3.9.0",
-    "nodemon": "^1.10.2",
     "nw": "^0.17.1",
-    "nw-builder": "^3.0.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "cssnano": "^3.7.4",
     "postcss-loader": "^0.13.0",
-    "sass-loader": "^4.0.2",
+    "css-loader": "^0.25.0",
+    "babel-polyfill": "^6.13.0",
+    "nw-builder": "^3.0.0",
+    "babel-core": "^6.14.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "node-sass": "^3.9.0",
+    "webpack": "^1.13.2",
+    "nodemon": "^1.10.2",
+    "babel-preset-stage-1": "^6.13.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2"
+    "cross-env": "^2.0.1",
+    "sass-loader": "^4.0.2",
+    "babel-loader": "^6.2.5",
+    "babel-preset-react": "^6.11.1"
   }
 }

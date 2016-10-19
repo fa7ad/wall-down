@@ -25,8 +25,9 @@ const prodPlugins = [
 
 module.exports = {
   noInfo: true,
+  target: 'node-webkit',
   entry: {
-    main: './app/src/index'
+    main: ['babel-polyfill', './app/src/']
   },
   output: {
     path: './app',
@@ -40,7 +41,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       },
@@ -51,6 +52,10 @@ module.exports = {
           'css?modules&localIdentName="[name]-[local]-[hash:9]"' +
           '&importLoaders=1!postcss!sass'
         )
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css!postcss')
       }
     ]
   },
@@ -59,7 +64,8 @@ module.exports = {
     'react': 'React',
     'react-dom': 'ReactDOM',
     'snoowrap': 'snoowrap',
-    'lodash': '_'
+    'lodash': '_',
+    'nw': 'nw'
   },
   plugins: _.uniq(
     NODE_ENV === 'production' ? _.concat(prodPlugins, pluginsList) : pluginsList)
