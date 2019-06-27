@@ -1938,15 +1938,15 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-eslint-config-standard-jsx@^3.0.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard-jsx/-/eslint-config-standard-jsx-3.3.0.tgz#cab0801a15a360bf63facb97ab22fbdd88d8a5e0"
+eslint-config-standard-jsx@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard-jsx/-/eslint-config-standard-jsx-5.0.0.tgz#4abfac554f38668e0078c664569e7b2384e5d2aa"
 
-eslint-config-standard-react@^4.2.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard-react/-/eslint-config-standard-react-4.3.0.tgz#7e0d3575f15a3c0b6639ccb63949dfb5ba3a0a8a"
+eslint-config-standard-react@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard-react/-/eslint-config-standard-react-7.0.0.tgz#8fa0af7a3451ddcb26277e30999fc760df0f4b93"
   dependencies:
-    eslint-config-standard-jsx "^3.0.0"
+    eslint-config-standard-jsx "^5.0.0"
 
 eslint-config-standard@^7.1.0:
   version "7.1.0"
