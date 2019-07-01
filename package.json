@@ -39,7 +39,7 @@
     "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "cssnano": "^4.1.10",
-    "eslint": "^5.16.0",
+    "eslint": "^6.0.1",
     "eslint-config-standard": "^7.1.0",
     "eslint-config-standard-react": "^7.0.2",
     "eslint-plugin-promise": "^4.2.1",
