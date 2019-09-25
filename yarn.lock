@@ -2022,9 +2022,9 @@ eslint-config-standard-jsx@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/eslint-config-standard-jsx/-/eslint-config-standard-jsx-8.0.0.tgz#62607f2a7c0c47aed46d3a37ad7ebc73b6f7e869"
 
-eslint-config-standard-react@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-standard-react/-/eslint-config-standard-react-9.0.0.tgz#f0c39ee566c0e1891775fb7de80ca597179f4a8e"
+eslint-config-standard-react@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-standard-react/-/eslint-config-standard-react-9.2.0.tgz#b21f05c087c1b0cfeea9fa3bff3cf42bd08a68a9"
   dependencies:
     eslint-config-standard-jsx "^8.0.0"
 
