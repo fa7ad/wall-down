@@ -14,7 +14,7 @@
     "react": "^15.3.1",
     "mobx": "^2.5.1",
     "mobx-react": "^3.5.5",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "react-icons": "^2.2.1"
   },
   "node-remote": [],
